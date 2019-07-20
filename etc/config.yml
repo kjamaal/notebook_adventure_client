@@ -1,0 +1,4 @@
+## Runtime configuration for the notebook_adventure application.
+##
+core:
+  logging: WARN
