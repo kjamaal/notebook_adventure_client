@@ -11,21 +11,12 @@ import pytest
 from notebook_adventure.api import *  # tests __all__
 
 
-def test_hello():
+def test_play():
     """ Test the hello() function.
 
     """
-    assert hello() == "Hello, World!"
+    assert play == 0
     return
-
-
-def test_hello_name():
-    """ Test the hello() function with a name.
-
-    """
-    assert hello("foo") == "Hello, foo!"
-    return
-
 
 # Make the script executable.
 

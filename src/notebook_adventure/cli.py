@@ -5,7 +5,7 @@ from argparse import ArgumentParser
 from inspect import getfullargspec
 
 from . import __version__
-from .api import hello
+from .api import play
 from .core.config import config
 from .core.logger import logger
 
@@ -19,6 +19,7 @@ def main(argv=None) -> int:
     :param argv: argument list to parse (sys.argv by default)
     :return: exit status
     """
+
     args = _args(argv)
     logger.start(args.warn or "DEBUG")  # can't use default from config yet
     logger.debug("starting execution")
@@ -35,7 +36,7 @@ def main(argv=None) -> int:
         # No kwargs, remove unexpected arguments.
         args = {key: args[key] for key in args if key in spec.args}
     try:
-        command(**args)
+      command(**args)
     except RuntimeError as err:
         logger.critical(err)
         return 1
@@ -57,9 +58,9 @@ def _args(argv):
     parser.add_argument("-w", "--warn", default="WARN",
             help="logger warning level [WARN]")
     common = ArgumentParser(add_help=False)  # common subcommand arguments
-    common.add_argument("--name", "-n", default="World", help="greeting name")
+    common.add_argument("name", help="greeting name")
     subparsers = parser.add_subparsers(title="subcommands")
-    _hello(subparsers, common)
+    _play(subparsers, common)
     args = parser.parse_args(argv)
     if not args.config:
         # Don't specify this as an argument default or else it will always be
@@ -68,14 +69,14 @@ def _args(argv):
     return args
  
 
-def _hello(subparsers, common):
+def _play(subparsers, common):
     """ CLI adaptor for the api.hello command.
 
     :param subparsers: subcommand parsers
     :param common: parser for common subcommand arguments
     """
-    parser = subparsers.add_parser("hello", parents=[common])
-    parser.set_defaults(command=hello)
+    parser = subparsers.add_parser("play", parents=[common])
+    parser.set_defaults(command=play)
     return
 
 

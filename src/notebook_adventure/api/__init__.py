@@ -1,7 +1,7 @@
 """ Application commands common to all interfaces.
 
 """
-from .hello import main as hello
+from .play import main as play
 
 
-__all__ = "hello",
+__all__ = ["play","new_game","delete_game"]
