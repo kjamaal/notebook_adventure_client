@@ -2,8 +2,11 @@
 
 """
 from ..core.logger import logger
+from ..core.formatter import scroll_output
 import sys
 
+stdin_ = sys.__stdin__
+sys.stdin = stdin_
 
 def main(name):
     """ Execute the command.
@@ -11,29 +14,35 @@ def main(name):
     :param name: name of saved game to play
     """
     logger.debug("Starting a game")
-    stdout_ = sys.__stdout__
-    sys.stdout = stdout_
-    stdin_ = sys.__stdin__
-    sys.stdin = stdin_
-
 
     def play_intro():
-      print('''
-        Hello there. Let's play a game.
-      ''')
-      return 0
+      scroll_output(['\033[1;33;40mHello there. Let\'s play a game.'],{'print_by' : 'char','sec_delay': .1})
     
     def play_game():
-      output = input('Would you like to play? (y/n): ')
+      output = input('\033[0;37;40mWould you like to play? (y/n): ')
       if output == 'y':
         script = [
-          'this is sentence one',
-          'this is sentence two',
-          'and a third sentence'
+          'Part 1',
+          '[Sylva (your guardian)]',
+          'Prince, as you know, your parents recently died in the war saved our kingdom from the orc kingdom.',
+          'Today you shall become the king/queen.',
+          '[Narrator]',
+          'As you walk the hall to the arena, several guards bow.',
+          'You sit in the chair in your designated area to watch the fights.',
+          '[You]',
+          'Thank you for coming on this day, today I will become the new human ruler.',
+          'As you know, it is tradition to watch fights in the arena after the new ruler is crowned.',
+          '[Narrator]',
+          'You are crowned.',
+          'The crowd cheers.'
+          'The battle between a wizard and a very dangerous archer begains.',
+          'After about about 4 hours, the third round ends between a sword man and a brain washing fifty year old ends.(The fifty year old wins)',
+          'Everyone gets ready for the next round.',
+          'Just then, an explosion happend on the right side of the arena.',
+                   
         ]
 
-        for s in script:
-          print(s)
+        scroll_output(script,{'print_by':'line','sec_delay':1})
 
     def _is_new():
       return True
