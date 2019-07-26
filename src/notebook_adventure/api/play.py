@@ -24,25 +24,39 @@ def main(name):
         script = [
           'Part 1',
           '[Sylva (your guardian)]',
-          'Prince, as you know, your parents recently died in the war saved our kingdom from the orc kingdom.',
+          'Prince, as you know, your parents recently died in the war saving our kingdom from the orc kingdom.',
           'Today you shall become the king/queen.',
           '[Narrator]',
           'As you walk the hall to the arena, several guards bow.',
           'You sit in the chair in your designated area to watch the fights.',
+          'Guards on either side of you hold spears.',
           '[You]',
           'Thank you for coming on this day, today I will become the new human ruler.',
           'As you know, it is tradition to watch fights in the arena after the new ruler is crowned.',
           '[Narrator]',
           'You are crowned.',
-          'The crowd cheers.'
-          'The battle between a wizard and a very dangerous archer begains.',
-          'After about about 4 hours, the third round ends between a sword man and a brain washing fifty year old ends.(The fifty year old wins)',
+          'The crowd cheers.',
+          'The battle between a wizard and a very dangerous archer begins.',
+          'After about four hours, the third round ends between a swordsman and a brain washing fifty year old .(The fifty year old wins)',
           'Everyone gets ready for the next round.',
-          'Just then, an explosion happend on the right side of the arena.',
-                   
-        ]
+          'Just then, an explosion happens on the right side of the arena.',
+          'Dark green creatures come out of the damaged area filling the arena.',
+          'The guards on your sides go and fight the things comming for you.',
+          '[Sylva]',
+          'Two soldiers there, one there GO GO GO!',
+          'King/Queen!',
+          '[Narrator]',
+          'Two orcs jump in front of you.',
+          'Sylva comes out of nowhere, rushing words out of her mouth.',
+          '[Sylva]',
+          'I got this one you get that one!',
+          'FIGHT tutorial',
+          'End of part l',
+          'Part ll',
+        ]           
+      
 
-        scroll_output(script,{'print_by':'line','sec_delay':1})
+        scroll_output(script,{'print_by':'line','sec_delay':2})
 
     def _is_new():
       return True
