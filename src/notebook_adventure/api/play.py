@@ -3,6 +3,7 @@
 """
 from ..core.logger import logger
 from ..core.formatter import scroll_output
+from ..data.classes import *
 import sys
 
 stdin_ = sys.__stdin__
