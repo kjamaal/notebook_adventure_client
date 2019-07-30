@@ -1,9 +1,9 @@
-""" Implement the hello command.
+""" Implement the play command.
 
 """
 from ..core.logger import logger
 from ..core.formatter import scroll_output
-from ..data.classes import *
+from ..data.classes import Human
 import sys
 
 stdin_ = sys.__stdin__
@@ -16,64 +16,65 @@ def main(name):
     """
     logger.debug("Starting a game")
 
-    def play_intro():
-      scroll_output(['\033[1;33;40mHello there. Let\'s play a game.'],{'print_by' : 'char','sec_delay': .1})
+    def game_init():
+      player_name = input('What\'s your name?: ')
+      player_age = input('How old are you?: ')
+      player_gender = input('what gender are you?: ')
+      return Human.Human(player_name, player_age, player_gender)
+
+    def play_intro():        
+      script = [
+        'Part 1',
+        '[Sylva (your guardian)]',
+        'Prince, as you know, your parents recently died in the war saving our kingdom from the orc kingdom.',
+        'Today you shall become the king/queen.',
+        '[Narrator]',
+        'As you walk the hall to the arena, several guards bow.',
+        'You sit in the chair in your designated area to watch the fights.',
+        'Guards on either side of you hold spears.',
+        '[You]',
+        'Thank you for coming on this day, today I will become the new human ruler.',
+        'As you know, it is tradition to watch fights in the arena after the new ruler is crowned.',
+        '[Narrator]',
+        'You are crowned.',
+        'The crowd cheers.',
+        'The battle between a wizard and a very dangerous archer begins.',
+        'After about four hours, the third round ends between a swordsman and a brain washing fifty year old .(The fifty year old wins)',
+        'Everyone gets ready for the next round.',
+        'Just then, an explosion happens on the right side of the arena.',
+        'Dark green creatures come out of the damaged area filling the arena.',
+        'The guards on your sides go and fight the things comming for you.',
+        '[Sylva]',
+        'Two soldiers there, one there GO GO GO!',
+        'King/Queen!',
+        '[Narrator]',
+        'Two orcs jump in front of you.',
+        'Sylva comes out of nowhere, rushing words out of her mouth.',
+        '[Sylva]',
+        'I got this one you get that one!',
+        'FIGHT tutorial',
+        'End of part l',
+        'Part ll',
+      ]
+
+      scroll_output(script,{'print_by':'line','sec_delay':2})       
     
     def play_game():
-      output = input('\033[0;37;40mWould you like to play? (y/n): ')
-      if output == 'y':
-        script = [
-          'Part 1',
-          '[Sylva (your guardian)]',
-          'Prince, as you know, your parents recently died in the war saving our kingdom from the orc kingdom.',
-          'Today you shall become the king/queen.',
-          '[Narrator]',
-          'As you walk the hall to the arena, several guards bow.',
-          'You sit in the chair in your designated area to watch the fights.',
-          'Guards on either side of you hold spears.',
-          '[You]',
-          'Thank you for coming on this day, today I will become the new human ruler.',
-          'As you know, it is tradition to watch fights in the arena after the new ruler is crowned.',
-          '[Narrator]',
-          'You are crowned.',
-          'The crowd cheers.',
-          'The battle between a wizard and a very dangerous archer begins.',
-          'After about four hours, the third round ends between a swordsman and a brain washing fifty year old .(The fifty year old wins)',
-          'Everyone gets ready for the next round.',
-          'Just then, an explosion happens on the right side of the arena.',
-          'Dark green creatures come out of the damaged area filling the arena.',
-          'The guards on your sides go and fight the things comming for you.',
-          '[Sylva]',
-          'Two soldiers there, one there GO GO GO!',
-          'King/Queen!',
-          '[Narrator]',
-          'Two orcs jump in front of you.',
-          'Sylva comes out of nowhere, rushing words out of her mouth.',
-          '[Sylva]',
-          'I got this one you get that one!',
-          'FIGHT tutorial',
-          'End of part l',
-          'Part ll',
-        ]           
-      
-
-        scroll_output(script,{'print_by':'line','sec_delay':2})
-
-    def _is_new():
-      return True
+        scroll_output(human_ruler.attack('orc','physical','punch'),{'print_by':'char','sec_delay':.1})
 
     def _check_for_game():
-      """ Make sure this saved game exists
+      """ Make sure this saved game exists argv[1]
       
       """
-      return True
+      return False
 
-    if _check_for_game() and _is_new():
-      play_intro()
-      play_game()
-    elif _is_new():
+    if _check_for_game():
       play_game()
     else:
-      print('Make a new game suckah')
-    
+      output = input('\033[0;37;40mWelcome to Notebook Adventure. Would you like to play? (y/n): ')
+      if output == 'y':
+        human_ruler = game_init()
+        play_intro()
+        play_game()
+
     return 0

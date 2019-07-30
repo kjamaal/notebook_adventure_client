@@ -70,7 +70,7 @@ def _args(argv):
  
 
 def _play(subparsers, common):
-    """ CLI adaptor for the api.hello command.
+    """ CLI adaptor for the api.play command.
 
     :param subparsers: subcommand parsers
     :param common: parser for common subcommand arguments
