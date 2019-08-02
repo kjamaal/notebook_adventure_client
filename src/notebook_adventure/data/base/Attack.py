@@ -1,5 +1,8 @@
+from abc import ABC, abstractmethod
 
-class Attack:
-  def __init__(self,name,aType):
+class Attack(ABC):
+  def __init__(self, name, aType, damage):
     self.name = name
-    self.type = aType
+    self.aType = aType
+    self.damage = damage
+    super().__init__()

@@ -1,7 +1,8 @@
+from abc import ABC, abstractmethod
 
 __all__ = "Character",
 
-class Character:
+class Character(ABC):
   def __init__(self, name, age, gender, physical_attacks, magic_attacks, hp, md):
     self.name = name 
     self.age = age
@@ -10,9 +11,12 @@ class Character:
     self.magic_attacks = []
     self.hp = hp 
     self.md = md 
+    super().__init__()
+  
+  @abstractmethod
+  def attack(self, target, attack_obj): 
+    pass
 
-  def attack(self, target, attack_type, attack_name): 
-    if attack_type == 'physical':
-      return ['I\'m attacking you and taking strength with '+ attack_name]
-    else:
-      return ['I\'m attacking you and taking magic defense (constitution?) with '+ attack_name]
+  @abstractmethod
+  def heal(self, target, heal_obj):
+    pass

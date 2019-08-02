@@ -3,9 +3,15 @@ from ..base.Character import Character
 __all__ = 'Human',
 
 class Human(Character):
-  def __init__(self, name, age, gender):
-    self.physical_attacks = ['punch','kick']
-    self.magic_attacks = ['attack1','attack2']
-    self.hp = 10
-    self.md = 10
-    Character.__init__(self, name, age, gender, self.physical_attacks, self.magic_attacks, self.hp, self.md)
+  def __init__(self, name, age, gender, physical_attacks, magic_attacks, hp, md):
+    Character.__init__(self, name, age, gender, physical_attacks, magic_attacks, hp, md)
+
+  def attack(self, target_obj, attack_obj):
+    return [
+      'I\'m attacking with type '+attack_obj.aType,
+      'taking '+str(attack_obj.damage)+' of damage from '+target_obj.name,
+      'who is a(n) '+target_obj.__class__.__name__
+    ]
+  
+  def heal(self, target, amount, type):
+    pass 

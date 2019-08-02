@@ -3,7 +3,8 @@
 """
 from ..core.logger import logger
 from ..core.formatter import scroll_output
-from ..data.classes import Human
+from ..core import factory
+from ..data.classes import Human, Orc, Demon, Physical_attack, Magic_attack
 import sys
 
 stdin_ = sys.__stdin__
@@ -17,12 +18,15 @@ def main(name):
     logger.debug("Starting a game")
 
     def game_init():
+      '''Create the game context and save it to the database
+
+      '''
       player_name = input('What\'s your name?: ')
       player_age = input('How old are you?: ')
       player_gender = input('what gender are you?: ')
-      return Human.Human(player_name, player_age, player_gender)
+      return factory.new_human(player_name, player_age, player_gender)
 
-    def play_intro():        
+    def play_intro():
       script = [
         'Part 1',
         '[Sylva (your guardian)]',
@@ -60,7 +64,9 @@ def main(name):
       scroll_output(script,{'print_by':'line','sec_delay':2})       
     
     def play_game():
-        scroll_output(human_ruler.attack('orc','physical','punch'),{'print_by':'char','sec_delay':.1})
+      attack_obj = Physical_attack.Physical_attack('punch','physical',10)
+      orc = Orc.Orc('orcface',20,'m',['bite','scratch'],['push','hide'],10,10)
+      scroll_output(human_ruler.attack(orc,attack_obj),{'print_by':'char','sec_delay':.1})
 
     def _check_for_game():
       """ Make sure this saved game exists argv[1]
@@ -71,10 +77,10 @@ def main(name):
     if _check_for_game():
       play_game()
     else:
-      output = input('\033[0;37;40mWelcome to Notebook Adventure. Would you like to play? (y/n): ')
+      output = input('Welcome to Notebook Adventure. Would you like to play? (y/n): ')
       if output == 'y':
         human_ruler = game_init()
-        play_intro()
+        #play_intro()
         play_game()
 
     return 0
