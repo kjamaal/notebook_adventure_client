@@ -24,7 +24,7 @@ def main(name):
       player_name = input('What\'s your name?: ')
       player_age = input('How old are you?: ')
       player_gender = input('what gender are you?: ')
-      return factory.new_human(player_name, player_age, player_gender)
+      return factory.new_char(player_name, player_age, player_gender,'Human')
 
     def play_intro():
       script = [
