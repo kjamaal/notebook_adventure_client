@@ -2,7 +2,9 @@
 
 '''
 from ..services import api_caller
-from ..data.classes import Human, Orc, Demon, Elf
+from . import serializer
+from ..model.classes import Human, Orc, Demon, Elf
+from ..model.static import Context
 
 def new_char(name,age,gender,cType):
   pAttacks = _get_attacks(cType)['physical']
@@ -18,6 +20,9 @@ def new_char(name,age,gender,cType):
     return Elf.Elf(name,age,gender,pAttacks,mAttacks,10,10)
   else:
     return Exception
+
+def new_context(name, characters, view):
+  return Context.Context(name, characters, view)
 
 def _get_attacks(char_type):
   return api_caller.get_attacks(char_type)
