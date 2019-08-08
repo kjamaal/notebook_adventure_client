@@ -2,12 +2,13 @@
 
 '''
 from time import sleep
+from os import system, name
 import sys
 
 __all__ = "scroll_output",
 
 config = {
-  'print_by' : 'char',
+  'print_by' : 'line',
   'sec_delay': 1,
 }
 
@@ -31,3 +32,11 @@ def scroll_output(output, config=config):
         sys.stdout.flush()
         sleep(config['sec_delay'])
       print(last)
+
+def clear_screen():
+  if name == 'nt': 
+    _ = system('cls') 
+  
+  # for mac and linux(here, os.name is 'posix') 
+  else: 
+    _ = system('clear') 

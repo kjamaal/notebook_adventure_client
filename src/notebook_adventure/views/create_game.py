@@ -10,3 +10,4 @@ def play(name):
   player_age = input('How old are you?: ')
   player_gender = input('what gender are you?: ')
   ctx = create_game_controller.create_context(name, player_name, player_age, player_gender, 'Human')
+  #give option to start game or exit

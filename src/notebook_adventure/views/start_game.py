@@ -1,15 +1,14 @@
 from ..controllers import start_game_controller
 from ..core import formatter
-#from ..model.classes import Human, Orc, Demon, Physical_attack, Magic_attack
+from . import new_game, fight_tutorial
 import sys
 
 stdin_ = sys.__stdin__
 sys.stdin = stdin_
-views = sys.modules[__name__]
 
 def play(name):
   ctx = start_game_controller.fetch_context(name)
-  if ctx:
-    getattr(views, ctx.view).play(ctx)
+  if ctx:    
+    getattr(globals()[list(ctx.view.keys())[0]], 'play')(ctx)
   else:
-    formatter.scroll_output('ain\'t no game by that name',{'print_by':'char','sec_delay':.1})
+    formatter.scroll_output('ain\'t no game by that name')

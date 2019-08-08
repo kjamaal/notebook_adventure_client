@@ -2,7 +2,6 @@
 
 '''
 from ..services import api_caller
-from . import serializer
 from ..model.classes import Human, Orc, Demon, Elf
 from ..model.static import Context
 
