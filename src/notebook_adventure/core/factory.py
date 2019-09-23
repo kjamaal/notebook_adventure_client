@@ -2,7 +2,7 @@
 
 '''
 from ..services import api_caller
-from ..model.classes import Human, Orc, Demon, Elf
+from ..model.classes import Human, Orc, Demon, Elf, Magic_attack, Physical_attack
 from ..model.static import Context
 
 def new_char(name,age,gender,cType):
